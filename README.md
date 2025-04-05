@@ -1,6 +1,7 @@
 # p10 Réalisez une application de recommandation de contenu
 
 🚀 Premier succès :
+
 ✅ Serveur GitLab auto-hébergé sur Freebox
 
 ✅ Accessible via nom de domaine DuckDNS dynamique
