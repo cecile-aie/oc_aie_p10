@@ -2,10 +2,15 @@
 
 🚀 Premier succès :
 ✅ Serveur GitLab auto-hébergé sur Freebox
+
 ✅ Accessible via nom de domaine DuckDNS dynamique
+
 ✅ HTTPS actif avec Let's Encrypt
+
 ✅ Ports 80, 443 et 22 ouverts et redirigés
+
 ✅ Authentification SSH configurée pour VS Code
+
 ✅ Accès distant sécurisé et fluide
 
 ## Getting started
