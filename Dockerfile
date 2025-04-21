@@ -5,4 +5,4 @@ FROM jupyter/scipy-notebook:python-3.11
 RUN pip install scikit-learn pandas numpy matplotlib seaborn
 
 # Installation de la bibliothèque Surprise pour le collaborative filtering
-RUN pip install scikit-surprise
+RUN pip install scikit-surprise termcolor
