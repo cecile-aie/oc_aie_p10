@@ -1,0 +1,24 @@
+FROM nvidia/cuda:12.4.0-devel-ubuntu22.04
+
+# Installer Python, pip et outils système
+RUN apt-get update && apt-get install -y \
+    python3 python3-dev python3-pip python-is-python3 \
+    build-essential cmake git libopenblas-dev libomp-dev && \
+    rm -rf /var/lib/apt/lists/*
+
+# Installer les paquets Python nécessaires
+RUN pip install --upgrade pip setuptools wheel
+RUN pip install numpy scipy pybind11 jupyterlab matplotlib pandas scikit-build cmake \
+    pyarrow fastparquet
+
+# Cloner et compiler implicit (la détection GPU est automatique)
+RUN git clone https://github.com/benfred/implicit.git /opt/implicit && \
+    cd /opt/implicit && \
+    python3 -m pip install .
+
+# Dossier de travail
+WORKDIR /workspace
+
+EXPOSE 8888
+
+CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--allow-root", "--NotebookApp.token=''", "--NotebookApp.password=''"]
