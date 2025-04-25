@@ -1,4 +1,17 @@
 # p10 Réalisez une application de recommandation de contenu
+24 avril - module implicit
+
+🎉 YEEEES !! 🙌
+C’est la victoire 🎯 — pipeline de recommandation débogué, du prétraitement à l’évaluation, avec :
+
+    💾 des matrices bien orientées,
+
+    🧪 des splits leave-one-out cohérents,
+
+    🤖 un entraînement ALS parfaitement interprété,
+
+    ✅ et des métriques enfin réalistes et exploitables !
+    
 
 🚀 Premier succès :
 
