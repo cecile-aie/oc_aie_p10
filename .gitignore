@@ -13,3 +13,6 @@ notebooks/.ipynb_checkpoints/Untitled-checkpoint.ipynb
 brouillon_lightfm.ipynb
 .virtual_documents/p10_EDA.ipynb
 results/experiments_lightfm.csv
+comparaison_content_based_labels.png
+comparaison_content_based.png
+results/eval_results.csv
