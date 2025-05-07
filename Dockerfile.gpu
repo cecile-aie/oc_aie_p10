@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
 # Installer les paquets Python nécessaires
 RUN pip install --upgrade pip setuptools wheel
 RUN pip install numpy scipy pybind11 jupyterlab matplotlib pandas scikit-learn \
-    scikit-build cmake pyarrow fastparquet seabron adjustText
+    scikit-build cmake pyarrow fastparquet seaborn adjustText
 
 
 # Cloner et compiler implicit (la détection GPU est automatique)
