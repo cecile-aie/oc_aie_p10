@@ -18,3 +18,22 @@ comparaison_content_based.png
 results/eval_results.csv
 lightFM result matrice V0 - hybride - normalisation.odt
 results/lightFM result matrice V0 - hybride - normalisation.csv
+articles_embeddings_pca_filtered_normalized.parquet
+.gitignore
+articles_embeddings_pca_normalized.parquet
+reco-mvp/.ipynb_checkpoints/app-checkpoint.py
+reco-mvp/.ipynb_checkpoints/lambda_handler-checkpoint.py
+results/grid_user_features_sample.csv
+.gitignore
+results/grid_user+item_features_sample.csv
+results/gridsearch_combined_features.csv
+results/gridsearch_user_features_combined.csv
+results/gridsearch_user+item_features_combined.csv
+results/hybrid_gridsearch_sampled_item_features.csv
+results/lightfm_bpr_ndcg_results.csv
+results/lightFM_grid_search_influence_regul_tem.png
+results/lightFM_grid_search_influence_regul_user.png
+results/lightFM_grid_search_log_epochs.png
+results/lightFM_heatmap_NDGC_regul.png
+results/LightFM_logs_grid_search_regul
+results/Top_5_configurations_LightFM.csv
