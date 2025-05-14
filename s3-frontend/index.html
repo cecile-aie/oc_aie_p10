@@ -1,0 +1,39 @@
+
+  <!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Recommandations LightFM</title>
+</head>
+<body>
+  <h1>🔍 Recommandations pour un utilisateur</h1>
+  
+  <input type="text" id="user_id" placeholder="Entrez un user_id" />
+  <button onclick="getRecommendations()">Obtenir les recommandations</button>
+
+  <pre id="output" style="margin-top: 20px;"></pre>
+
+  <script>
+    function getRecommendations() {
+      const userId = document.getElementById("user_id").value;
+      const output = document.getElementById("output");
+
+      fetch(`https://nxdrke4octtpb436cxlwfnrhlu0anipv.lambda-url.eu-west-3.on.aws/?user_id=${userId}`)
+      .then(async (response) => {
+        if (!response.ok) {
+          const text = await response.text();
+          throw new Error(`HTTP ${response.status}: ${text}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        output.textContent = JSON.stringify(data, null, 2);
+      })
+      .catch(error => {
+        output.textContent = "❌ Erreur : " + error.message;
+      });
+    }
+  </script>
+</body>
+</html>
+
