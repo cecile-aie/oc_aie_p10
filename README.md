@@ -1,6 +1,6 @@
 # 📚 Application de recommandation de contenu - MVP
 
-Ce projet est un système de recommandation de contenu implémenté dans le cadre du parcours Data Scientist OpenClassrooms. Il démontre un MVP complet de bout en bout avec un déploiement serverless.
+Ce projet est un système de recommandation de contenu implémenté dans le cadre du parcours AI Engineer OpenClassrooms. Il démontre un MVP complet de bout en bout avec un déploiement serverless.
 
 ---
 
