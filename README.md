@@ -62,6 +62,8 @@ Clés AWS injectées via les variables GitLab :
 - `AWS_ACCESS_KEY_ID`
 - `AWS_SECRET_ACCESS_KEY`
 
+Le projet est en accès public sur github :
+https://github.com/cecile-aie/oc_aie_p10.git
 ---
 
 ## 🚀 Accès en production
