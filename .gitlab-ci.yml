@@ -7,7 +7,7 @@ stages:
 variables:
   AWS_REGION: eu-west-3
   LAMBDA_NAME: reco-lambda
-  LAMBDA_SRC_DIR: lambda-function
+  LAMBDA_SRC_DIR: lambda-reco/lambda_function
   LAMBDA_ZIP: lambda.zip
 
 # Étape commune : installation de l'AWS CLI
@@ -42,10 +42,10 @@ deploy:lambda:
   stage: deploy-lambda
   extends: .before_aws_cli
   script:
-    - echo "📦 Packaging Lambda code..."
+    - echo "📦 Packaging Lambda code (contenu à plat)..."
     - cd $LAMBDA_SRC_DIR
-    - zip -r ../../$LAMBDA_ZIP .
-    - cd ../..
+    - zip -r ../$LAMBDA_ZIP ./*
+    - cd ..
     - echo "🚀 Mise à jour de la fonction Lambda $LAMBDA_NAME"
     - aws lambda update-function-code --function-name $LAMBDA_NAME --zip-file fileb://$LAMBDA_ZIP
   only:
