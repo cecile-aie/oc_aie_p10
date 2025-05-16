@@ -40,4 +40,3 @@ results/lightFM_heatmap_NDGC_regul.png
 results/LightFM_logs_grid_search_regul
 results/Top_5_configurations_LightFM.csv
 results/grid_warp_user_cobmined.csv
-reco-assets/user_mapping.json
