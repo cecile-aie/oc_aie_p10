@@ -4,13 +4,14 @@ stages:
 test:aws-access:
   stage: test
   before_script:
-    - echo "📦 Installation AWS CLI..."
+    - echo "📦 Installation AWS CLI localement..."
     - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
     - unzip -q awscliv2.zip
-    - sudo ./aws/install
-    - export PATH=$PATH:/usr/local/bin
+    - ./aws/install -i $CI_PROJECT_DIR/aws-cli -b $CI_PROJECT_DIR/aws-cli-bin
+    - export PATH=$CI_PROJECT_DIR/aws-cli-bin:$PATH
   script:
     - echo "🧪 Test de connexion à AWS avec AWS CLI"
+    - aws --version
     - aws s3 ls s3://mycontent-reco-assets/
   only:
     - main
