@@ -27,7 +27,7 @@
   </style>
 </head>
 <body>
-  <h1>🧠 Recommandations personnalisées</h1>
+  <h1>🎯 Recommandations personnalisées par utilisateur (lightfm user-item)</h1>
   <label for="userIdInput">Entrez un ID utilisateur :</label>
   <input type="text" id="userIdInput" placeholder="ex: 42" />
   <button onclick="fetchReco()">Obtenir les recommandations</button>
@@ -45,6 +45,10 @@
 
       const resultDiv = document.getElementById("result");
       resultDiv.innerHTML = "⏳ Chargement...";
+
+
+      // ✅ Réinitialiser le graphe
+      Plotly.purge("viz");
 
       try {
         const [recoRes, embRes, clicksRes] = await Promise.all([
@@ -83,7 +87,7 @@
             z: +z,
             color: isClicked && isReco ? "green" : isReco ? "orange" : isClicked ? "blue" : null,
             symbol: isClicked && isReco ? "diamond" : isReco ? "circle" : "circle",
-            size: isReco ? 6 : 4
+            size: isReco ? 14 : 10
           };
         }).filter(p => p.color);
 
