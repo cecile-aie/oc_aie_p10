@@ -1,0 +1,48 @@
+stages:
+  - deploy-assets
+  - deploy-lambda
+  - deploy-frontend
+
+variables:
+  AWS_REGION: eu-west-3
+  LAMBDA_NAME: reco-lambda
+  LAMBDA_SRC_DIR: lambda-reco/lambda-function
+  LAMBDA_ZIP: lambda.zip
+
+# Configuration AWS (à stocker via CI/CD variables GitLab)
+before_script:
+  - pip install --quiet awscli
+  - mkdir -p ~/.aws
+  - echo "[default]" > ~/.aws/config
+  - echo "region = $AWS_REGION" >> ~/.aws/config
+  - echo "[default]" > ~/.aws/credentials
+  - echo "aws_access_key_id = $AWS_ACCESS_KEY_ID" >> ~/.aws/credentials
+  - echo "aws_secret_access_key = $AWS_SECRET_ACCESS_KEY" >> ~/.aws/credentials
+
+deploy:assets:
+  stage: deploy-assets
+  script:
+    - echo "🔁 Syncing reco-assets to S3..."
+    - aws s3 sync reco-assets/ s3://mycontent-reco-assets/reco/ --delete
+  only:
+    - main
+
+deploy:lambda:
+  stage: deploy-lambda
+  script:
+    - echo "📦 Packaging Lambda code..."
+    - cd $LAMBDA_SRC_DIR
+    - zip -r ../../$LAMBDA_ZIP .
+    - cd ../..
+    - echo "🚀 Deploying Lambda function $LAMBDA_NAME..."
+    - aws lambda update-function-code --function-name $LAMBDA_NAME --zip-file fileb://$LAMBDA_ZIP
+  only:
+    - main
+
+deploy:frontend:
+  stage: deploy-frontend
+  script:
+    - echo "🌐 Deploying frontend to S3..."
+    - aws s3 sync s3-frontend/ s3://mycontent-reco-frontend/ --delete
+  only:
+    - main
