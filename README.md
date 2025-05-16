@@ -1,4 +1,4 @@
-[![Voir sur GitLab](https://img.shields.io/badge/🔒_Code_complet_sur-GitLab-FC6D26?logo=gitlab&logoColor=white)](git@cecile-proj.duckdns.org:oc_aie/p10-realisez-une-application-de-recommandation-de-contenu.git)
+[![Voir sur GitLab](https://img.shields.io/badge/🔒_Code_complet_sur-GitLab-FC6D26?logo=gitlab&logoColor=white)](https://cecile-proj.duckdns.org/oc_aie/p10-realisez-une-application-de-recommandation-de-contenu.git)
 [![Webapp en ligne](https://img.shields.io/badge/🖼️_Webapp_en_ligne-S3-blue?logo=amazon-aws&logoColor=white)](https://mycontent-reco-frontend.s3.eu-west-3.amazonaws.com/index.html)
 
 > 🚀 **Code complet disponible sur GitLab**
@@ -9,7 +9,7 @@
 > - le layer Lambda zippé
 > - les scripts de déploiement
 >
-> 👉 Accéder au dépôt complet : [gitlab.com/cecile-aie/oc_aie_p10](git@cecile-proj.duckdns.org:oc_aie/p10-realisez-une-application-de-recommandation-de-contenu.git)
+> 👉 Accéder au dépôt complet : [gitlab.com/cecile-aie/oc_aie_p10](https://cecile-proj.duckdns.org/oc_aie/p10-realisez-une-application-de-recommandation-de-contenu.git)
 
 
 # 📚 Application de recommandation de contenu - MVP
