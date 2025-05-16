@@ -1,3 +1,17 @@
+[![Voir sur GitLab](https://img.shields.io/badge/🔒_Code_complet_sur-GitLab-FC6D26?logo=gitlab&logoColor=white)](git@cecile-proj.duckdns.org:oc_aie/p10-realisez-une-application-de-recommandation-de-contenu.git)
+[![Webapp en ligne](https://img.shields.io/badge/🖼️_Webapp_en_ligne-S3-blue?logo=amazon-aws&logoColor=white)](https://mycontent-reco-frontend.s3.eu-west-3.amazonaws.com/index.html)
+
+> 🚀 **Code complet disponible sur GitLab**
+>
+> Ce dépôt GitHub est une copie publique nettoyée à des fins de consultation.
+> Le dépôt complet contient :
+> - les modèles entraînés (.pkl, .npz)
+> - le layer Lambda zippé
+> - les scripts de déploiement
+>
+> 👉 Accéder au dépôt complet : [gitlab.com/cecile-aie/oc_aie_p10](git@cecile-proj.duckdns.org:oc_aie/p10-realisez-une-application-de-recommandation-de-contenu.git)
+
+
 # 📚 Application de recommandation de contenu - MVP
 
 Ce projet est un système de recommandation de contenu implémenté dans le cadre du parcours AI Engineer OpenClassrooms. Il démontre un MVP complet de bout en bout avec un déploiement serverless.
@@ -38,16 +52,18 @@ Proposer à un utilisateur identifié les 5 articles les plus pertinents à reco
 
 ---
 
-## ⚙️ Architecture technique
+## 🧱 Architecture technique
 
-| Composant                  | Implémentation                                                               |
-| -------------------------- | ---------------------------------------------------------------------------- |
-| 🔍 Recommandation          | `LightFM` sans OpenMP, en production avec Lambda                             |
-| 🗺️ Visualisation          | Graphe `Plotly 3D` interactif dans une page HTML statique                    |
-| 🌐 Frontend                | Hébergé sur S3 (`mycontent-reco-frontend`)                                   |
-| ⚙️ Backend API             | AWS Lambda + accès S3, CORS configuré                                        |
-| 🚀 Déploiement automatique | GitLab CI/CD intelligent (déploiement sélectif par dossier modifié)          |
-| 🔐 Sécurité                | Accès public maîtrisé via `--acl public-read` + clé IAM via GitLab Variables |
+| Composant                  | Implémentation / Fonctionnalité                                               | Emplacement / Rôle                                        |
+| -------------------------- | ----------------------------------------------------------------------------- | --------------------------------------------------------- |
+| 🔍 Recommandation          | `LightFM` compilé sans OpenMP, exécuté dans une **fonction AWS Lambda**       | Back-end principal (reco-lambda)                          |
+| 🗺️ Visualisation          | Graphe `Plotly 3D` intégré dans une **page HTML statique**                    | Généré offline, intégré dans la webapp S3                 |
+| 🌐 Frontend                | Application Flask simplifiée, déployée comme site statique **S3**             | `mycontent-reco-frontend` – accès public                  |
+| ⚙️ Backend API             | **Lambda AWS** avec point d’accès URL + accès lecture aux assets S3           | Exécuté serverless, non public, appelé depuis le frontend |
+| 🚀 Déploiement automatique | Pipeline **GitLab CI/CD** intelligent (push conditionnel par dossier modifié) | Orchestration des builds, déploiements S3 et Lambda       |
+| 🔐 Sécurité                | Accès public maîtrisé (`--acl public-read`) + **clé IAM chiffrée GitLab**     | Sécurisé via GitLab CI/CD avec variables protégées        |
+| 📁 Code complet            | Contient modèles `.pkl`, `.npz`, scripts Lambda, CI/CD, frontend              | 🔒 GitLab (privé)                                         |
+| 📂 Miroir public           | Copie nettoyée sans gros fichiers, avec badges + lien vers GitLab             | GitHub (public, en lecture seule)                         |
 
 ---
 
