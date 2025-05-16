@@ -33,8 +33,8 @@ deploy:assets:
   stage: deploy-assets
   extends: .before_aws_cli
   script:
-    - echo "🔁 Sync reco-assets ➜ S3"
-    - aws s3 sync reco-assets/ s3://mycontent-reco-assets/reco/ --delete
+    - echo "🔁 Sync reco-assets ➜ S3 (public)"
+    - aws s3 sync reco-assets/ s3://mycontent-reco-assets/reco/ --delete --acl public-read
   rules:
     - changes:
         - reco-assets/**/*
