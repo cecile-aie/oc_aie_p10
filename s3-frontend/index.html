@@ -1,39 +1,120 @@
-
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Recommandations LightFM</title>
+  <meta charset="UTF-8" />
+  <title>Recommandations 3D - MVP</title>
+  <script src="https://cdn.plot.ly/plotly-2.26.0.min.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 2em;
+      background-color: #f7f7f7;
+    }
+    h1 {
+      color: #333;
+    }
+    #viz {
+      width: 100%;
+      height: 600px;
+    }
+    #result {
+      margin-top: 1em;
+    }
+    .hit {
+      font-weight: bold;
+      color: green;
+    }
+  </style>
 </head>
 <body>
-  <h1>🔍 Recommandations pour un utilisateur</h1>
-  
-  <input type="text" id="user_id" placeholder="Entrez un user_id" />
-  <button onclick="getRecommendations()">Obtenir les recommandations</button>
+  <h1>🧠 Recommandations personnalisées</h1>
+  <label for="userIdInput">Entrez un ID utilisateur :</label>
+  <input type="text" id="userIdInput" placeholder="ex: 42" />
+  <button onclick="fetchReco()">Obtenir les recommandations</button>
 
-  <pre id="output" style="margin-top: 20px;"></pre>
+  <div id="result"></div>
+  <div id="viz"></div>
 
   <script>
-    function getRecommendations() {
-      const userId = document.getElementById("user_id").value;
-      const output = document.getElementById("output");
+    async function fetchReco() {
+      const userId = document.getElementById("userIdInput").value;
+      if (!userId) {
+        alert("Veuillez entrer un identifiant utilisateur");
+        return;
+      }
 
-      fetch(`https://nxdrke4octtpb436cxlwfnrhlu0anipv.lambda-url.eu-west-3.on.aws/?user_id=${userId}`)
-      .then(async (response) => {
-        if (!response.ok) {
-          const text = await response.text();
-          throw new Error(`HTTP ${response.status}: ${text}`);
-        }
-        return response.json();
-      })
-      .then(data => {
-        output.textContent = JSON.stringify(data, null, 2);
-      })
-      .catch(error => {
-        output.textContent = "❌ Erreur : " + error.message;
-      });
+      const resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = "⏳ Chargement...";
+
+      try {
+        const [recoRes, embRes, clicksRes] = await Promise.all([
+          fetch("https://nxdrke4octtpb436cxlwfnrhlu0anipv.lambda-url.eu-west-3.on.aws/?user_id=" + userId),
+          fetch("https://mycontent-reco-assets.s3.eu-west-3.amazonaws.com/reco/article_embeddings_3d.csv"),
+          fetch("https://mycontent-reco-assets.s3.eu-west-3.amazonaws.com/reco/user_clicked_articles.json")
+        ]);
+
+        const recoData = await recoRes.json();
+        const recoList = recoData.recommendations.map(String);
+        const clickedArticles = JSON.parse(await clicksRes.text())[userId] || [];
+        const clickedList = clickedArticles.map(String);
+
+        const textReco = recoList.map(id =>
+          clickedList.includes(id) ?
+            `<span class="hit">${id}</span>` : id
+        ).join(", ");
+
+        resultDiv.innerHTML = `
+          <p><strong>Articles cliqués :</strong> ${clickedList.join(", ")}</p>
+          <p><strong>Articles recommandés :</strong> ${textReco}</p>
+          <p><em>🟢 = cliqué & recommandé, 🟠 = recommandé, 🔵 = cliqué</em></p>
+        `;
+
+        const embeddingText = await embRes.text();
+        const lines = embeddingText.split("\n").slice(1).filter(x => x);
+        const points = lines.map(line => {
+          const [id, x, y, z] = line.split(",");
+          const cid = String(id);
+          const isClicked = clickedList.includes(cid);
+          const isReco = recoList.includes(cid);
+          return {
+            id: cid,
+            x: +x,
+            y: +y,
+            z: +z,
+            color: isClicked && isReco ? "green" : isReco ? "orange" : isClicked ? "blue" : null,
+            symbol: isClicked && isReco ? "diamond" : isReco ? "circle" : "circle",
+            size: isReco ? 6 : 4
+          };
+        }).filter(p => p.color);
+
+        const trace = {
+          x: points.map(p => p.x),
+          y: points.map(p => p.y),
+          z: points.map(p => p.z),
+          mode: 'markers',
+          type: 'scatter3d',
+          text: points.map(p => p.id),
+          marker: {
+            size: points.map(p => p.size),
+            color: points.map(p => p.color),
+            symbol: points.map(p => p.symbol),
+            opacity: 0.8
+          }
+        };
+
+        Plotly.newPlot("viz", [trace], {
+          margin: { t: 0 },
+          scene: {
+            xaxis: { title: "x" },
+            yaxis: { title: "y" },
+            zaxis: { title: "z" }
+          }
+        });
+      } catch (e) {
+        resultDiv.innerHTML = "<span style='color: red;'>❌ Erreur lors du chargement des données</span>";
+        console.error(e);
+      }
     }
   </script>
 </body>
 </html>
-
