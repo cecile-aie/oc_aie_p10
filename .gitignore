@@ -3,8 +3,8 @@ p10_paper_V2_1904.10367v2.pdf
 p10_original_paper_dataset_1808.00076v3.pdf
 # dossiers
 /data
-/lambda-layer/python
-/lambda-layer/lightfm
+/lambda_layer/python/
+/lambda_layer/lightfm/
 /.ipynb_checkpoints
 p10_avatar.png
 brouilllon.ipynb
@@ -39,3 +39,5 @@ results/lightFM_grid_search_log_epochs.png
 results/lightFM_heatmap_NDGC_regul.png
 results/LightFM_logs_grid_search_regul
 results/Top_5_configurations_LightFM.csv
+results/grid_warp_user_cobmined.csv
+reco-assets/user_mapping.json
