@@ -40,14 +40,14 @@ Proposer à un utilisateur identifié les 5 articles les plus pertinents à reco
 
 ## ⚙️ Architecture technique
 
-| Composant             | Technologie                      |
-|-----------------------|----------------------------------|
-| 💡 Modèle             | LightFM (sans OpenMP)            |
-| 📦 API                | AWS Lambda (Function URL)        |
-| 🌐 Frontend           | Site statique S3 (HTML + JS)     |
-| 🧪 Test utilisateur   | Visualisation Plotly + `fetch()` |
-| 📤 Stockage modèle    | S3 (bucket `mycontent-reco-assets`) |
-| 🧠 Déploiement        | GitLab CI/CD avec runner local   |
+| Composant                  | Implémentation                                                               |
+| -------------------------- | ---------------------------------------------------------------------------- |
+| 🔍 Recommandation          | `LightFM` sans OpenMP, en production avec Lambda                             |
+| 🗺️ Visualisation          | Graphe `Plotly 3D` interactif dans une page HTML statique                    |
+| 🌐 Frontend                | Hébergé sur S3 (`mycontent-reco-frontend`)                                   |
+| ⚙️ Backend API             | AWS Lambda + accès S3, CORS configuré                                        |
+| 🚀 Déploiement automatique | GitLab CI/CD intelligent (déploiement sélectif par dossier modifié)          |
+| 🔐 Sécurité                | Accès public maîtrisé via `--acl public-read` + clé IAM via GitLab Variables |
 
 ---
 
