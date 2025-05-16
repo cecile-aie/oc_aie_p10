@@ -35,21 +35,24 @@ deploy:assets:
   script:
     - echo "🔁 Sync reco-assets ➜ S3"
     - aws s3 sync reco-assets/ s3://mycontent-reco-assets/reco/ --delete
-  only:
-    - main
+  rules:
+    - changes:
+        - reco-assets/**/*
 
 deploy:lambda:
   stage: deploy-lambda
   extends: .before_aws_cli
   script:
-    - echo "📦 Packaging Lambda code (contenu à plat)..."
+    - echo "📦 Packaging Lambda code..."
     - cd $LAMBDA_SRC_DIR
     - zip -r ../$LAMBDA_ZIP ./*
     - cd ..
     - echo "🚀 Mise à jour de la fonction Lambda $LAMBDA_NAME"
     - aws lambda update-function-code --function-name $LAMBDA_NAME --zip-file fileb://$LAMBDA_ZIP
-  only:
-    - main
+  rules:
+    - changes:
+        - lambda-reco/lambda_function/**/*  # ✅  chemin réel
+
 
 deploy:frontend:
   stage: deploy-frontend
@@ -57,5 +60,7 @@ deploy:frontend:
   script:
     - echo "🌐 Déploiement site statique ➜ S3"
     - aws s3 sync s3-frontend/ s3://mycontent-reco-frontend/ --delete
-  only:
-    - main
+  rules:
+    - changes:
+        - s3-frontend/**/*
+
