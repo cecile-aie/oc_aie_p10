@@ -1,0 +1,25 @@
+Exécution p10
+- Test local app streamlit
+docker run -p 8501:8501 reco-mvp
+- EDA: env conda eda (local)
+- Content based, Surprise (CF) et LightFM (hybride)
+docker run --rm -p 8888:8888 -v "$(pwd)":/home/jovyan/work reco-cpu
+- Implicit (GPU)
+docker run --rm --gpus all   -p 8888:8888   -v $(pwd):/workspace   implicit-gpu
+- Les layers lambda sont compilées localement pour créer les zip à télécharger
+Créer deux Lambda Layers séparées pour :
+    * lightfm compilé sans OpenMP
+    * numpy et dépendances mathématiques (scipy, etc.)
+# 1. Préparer l’environnement (dans un dossier avec un sous-dossier python)
+docker run -it --rm -v "$PWD":/lambda-build public.ecr.aws/lambda/python:3.11 bash
+# 2. Installer LightFM sans OpenMP
+cd /lambda-build
+pip install Cython
+pip install lightfm --no-binary :all: --no-use-pep517 -t python/
+# 3. Zippoer le dossier python et importer dans lambda
+# 4. Mêmes étapes pour numpy
+docker run -it --rm -v "$PWD":/lambda-build public.ecr.aws/lambda/python:3.11 bash
+cd /lambda-build
+pip install numpy scipy scikit-learn --platform manylinux2014_x86_64 --only-binary=:all: --target python/
+# 5. ZIP et chargement de la seconde couche
+Fonctionne avec python 3.11
