@@ -91,9 +91,9 @@ https://github.com/cecile-aie/oc_aie_p10.git
 
 ## 🧠 À terme : perspectives
 
+- User sans interaction: utilisation d'un modèle collaboratif
+- Ajouter des recommandations purement content based en plus
 - Ajouter un environnement `staging`
-- Affichage enrichi des résultats (tuiles, scores, contextes)
-- Exploration de modèles plus avancés (context-aware, multi-facteurs)
 
 ---
 
