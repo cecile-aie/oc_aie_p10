@@ -11993,13 +11993,46 @@ Les modèles implicit, comme ALS 128,0.01,20, ont des scores beaucoup plus modé
 <ul>
 <li>cohérents avec de la recommandation implicite réelle,</li>
 <li>obtenus sur l'ensemble du jeu avec leave-one-out réaliste,</li>
-<li>et sans biais de test sur échantillon réduit ou favorisé.
-| Approche          | Facilité de modélisation | Réalisme des scores   | Temps           | Portabilité | Applicabilité réelle      |
-| ----------------- | ------------------------ | --------------------- | --------------- | ----------- | ------------------------- |
-| <strong>Surprise</strong>      | Très facile              | ⚠️ irréaliste souvent | Moyen           | Faible      | Faible (notes explicites) |
-| <strong>Implicit</strong>      | Requiert plus d'efforts  | ✅ réaliste et stable  | ⚡️ Rapide (GPU) | Très bonne  | ✅ Production-ready        |
-| <strong>Content-based</strong> | Très contrôlable         | Réaliste mais limité  | Très rapide     | Très bonne  | ✅ Complémentaire          |</li>
+<li>et sans biais de test sur échantillon réduit ou favorisé.<br/></li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>Approche</th>
+<th>Facilité de modélisation</th>
+<th>Réalisme des scores</th>
+<th>Temps</th>
+<th>Portabilité</th>
+<th>Applicabilité réelle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Surprise</strong></td>
+<td>Très facile</td>
+<td>⚠️ irréaliste souvent</td>
+<td>Moyen</td>
+<td>Faible</td>
+<td>Faible (notes explicites)</td>
+</tr>
+<tr>
+<td><strong>Implicit</strong></td>
+<td>Requiert plus d'efforts</td>
+<td>✅ réaliste et stable</td>
+<td>⚡️ Rapide (GPU)</td>
+<td>Très bonne</td>
+<td>✅ Production-ready</td>
+</tr>
+<tr>
+<td><strong>Content-based</strong></td>
+<td>Très contrôlable</td>
+<td>Réaliste mais limité</td>
+<td>Très rapide</td>
+<td>Très bonne</td>
+<td>✅ Complémentaire</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -12011,11 +12044,25 @@ Les modèles implicit, comme ALS 128,0.01,20, ont des scores beaucoup plus modé
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>💡 Conclusion
-Tu peux considérer ALS (implicit) comme ton modèle de base sérieux pour une situation réelle, car :
-Il reflète mieux l'incertitude des comportements utilisateurs,
-Il fonctionne sans avoir besoin de notes explicites,
+On peut considérer ALS (implicit) comme un modèle de base sérieux pour une situation réelle, car :
+Il reflète mieux l'incertitude des comportements utilisateurs,<br/>
+Il fonctionne sans avoir besoin de notes explicites,<br/>
 Il reste très rapide et scalable.</p>
-<p>Et tu peux te servir des scores élevés de Surprise comme borne supérieure théorique, ou comme outil pédagogique pour illustrer les effets de surapprentissage ou d’évaluation biaisée.</p>
+<p>Les scores élevés de Surprise peuvent être considérés comme borne supérieure théorique, ou comme outil pédagogique pour illustrer les effets de surapprentissage ou d’évaluation biaisée.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=c67300c0-1ec7-48cc-a4ba-55e4ea5bcdbd">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
 </div>
 </div>
 </div>
