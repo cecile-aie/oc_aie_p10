@@ -122,6 +122,13 @@
         console.error(e);
       }
     }
+
+    // 🎯 Ajout du déclenchement avec la touche Entrée
+    document.getElementById("userIdInput").addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        fetchReco();
+      }
+    });
   </script>
 </body>
 </html>
