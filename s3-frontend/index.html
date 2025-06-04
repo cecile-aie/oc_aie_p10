@@ -28,12 +28,14 @@
 </head>
 <body>
   <h1>🎯 Recommandations personnalisées par utilisateur (lightfm user-item)</h1>
-  <label for="userIdInput">Entrez un ID utilisateur :</label>
-  <input type="text" id="userIdInput" placeholder="ex: 42" />
-  <p style="font-size: 0.9em; color: #666; margin-top: 0.3em;">
+  <div style="display: flex; align-items: center; gap: 1em; flex-wrap: wrap;">
+    <label for="userIdInput">Entrez un ID utilisateur :</label>
+    <input type="text" id="userIdInput" placeholder="ex: 42" />
+    <button onclick="fetchReco()">Obtenir les recommandations</button>
+  </div>
+  <p style="font-size: 0.9em; color: #666; margin-top: 0.5em;">
     Entrez un ID entre 0 et 322887 – attention filtre des utilisateurs avec plus de 2 interactions
   </p>
-  <button onclick="fetchReco()">Obtenir les recommandations</button>
 
   <div id="result"></div>
   <div id="viz"></div>
