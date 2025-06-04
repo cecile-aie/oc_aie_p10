@@ -78,6 +78,8 @@ Clés AWS injectées via les variables GitLab :
 - `AWS_ACCESS_KEY_ID`
 - `AWS_SECRET_ACCESS_KEY`
 
+Les Lambda Layers ont été générés localement via un conteneur Docker Amazon Linux 2, puis déployés manuellement pour ce MVP. Ce processus pourra être automatisé dans une prochaine itération via GitLab CI/CD.
+
 Le projet est en accès public sur github :
 https://github.com/cecile-aie/oc_aie_p10.git
 ---
@@ -99,4 +101,4 @@ https://github.com/cecile-aie/oc_aie_p10.git
 
 ## 👤 Auteur
 
-Projet réalisé par Cécile dans le cadre du parcours OpenClassrooms — AI Engineer.
+Projet réalisé par Cécile Mayer dans le cadre du parcours OpenClassrooms — AI Engineer.
